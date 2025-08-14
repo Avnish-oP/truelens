@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://truelens-internationals.com/sitemap.xml
+
+# Block development files
+Disallow: /_next/
+Disallow: /api/
+Disallow: *.json$
+
+# SEO optimization
+Crawl-delay: 1
