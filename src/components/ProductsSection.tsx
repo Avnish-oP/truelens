@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Eye, Palette, Shield, Layers, Sparkles, Heart } from "lucide-react";
 
@@ -21,7 +21,7 @@ const ProductsSection = () => {
     }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 60,
@@ -35,7 +35,7 @@ const ProductsSection = () => {
       rotateX: 0,
       transition: {
         duration: 0.8,
-        ease: "easeInOut"
+        ease: "easeOut"
       }
     }
   };

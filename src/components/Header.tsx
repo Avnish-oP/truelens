@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Eye, Menu, X, ArrowRight } from "lucide-react";
+import { Eye, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -171,7 +171,7 @@ const Header = () => {
             initial="initial"
             animate={isMenuOpen ? "animate" : "initial"}
           >
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}

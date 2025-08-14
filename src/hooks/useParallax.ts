@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransform, useScroll, MotionValue } from "framer-motion";
+import { useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 
 export function useParallax(offset: number = 50) {
