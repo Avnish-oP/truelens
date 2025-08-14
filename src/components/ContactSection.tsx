@@ -166,7 +166,7 @@ const ContactSection = () => {
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-8">
                   Have questions about our products or need personalized recommendations? 
-                  We're here to help you find the perfect vision solution.
+                  We&apos;re here to help you find the perfect vision solution.
                 </p>
               </motion.div>
 

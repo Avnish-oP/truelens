@@ -115,7 +115,7 @@ const WhyChooseUsSection = () => {
           </h2>
           
           <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            We're committed to providing exceptional eye care solutions with unmatched 
+            We&apos;re committed to providing exceptional eye care solutions with unmatched 
             quality, service, and innovation that you can trust.
           </p>
         </motion.div>

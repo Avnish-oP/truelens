@@ -3,8 +3,11 @@
 import { useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef, RefObject } from "react";
 
+// ScrollOffset type is not exported from framer-motion, so we define it locally
+type ScrollOffset = Array<any>;
+
 interface UseOptimizedScrollProps {
-  offset?: [string, string];
+  offset?: ScrollOffset;
   stiffness?: number;
   damping?: number;
   mass?: number;

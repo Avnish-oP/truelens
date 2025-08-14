@@ -121,13 +121,13 @@ const AboutSection = () => {
                 Excellence in Every Lens
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                With over 15 years of expertise in the eye care industry, we've revolutionized 
+                With over 15 years of expertise in the eye care industry, we&apos;ve revolutionized 
                 how people experience vision correction. Our commitment to innovation and quality 
                 has earned the trust of over 50,000 customers worldwide.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Every lens undergoes rigorous testing and quality assurance to ensure optimal 
-                comfort, clarity, and safety. We don't just sell lenses – we deliver confidence 
+                comfort, clarity, and safety. We don&apos;t just sell lenses – we deliver confidence 
                 in every blink.
               </p>
             </motion.div>
