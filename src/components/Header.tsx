@@ -20,7 +20,6 @@ const Header = () => {
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Products', href: '#products' },
-    { name: 'Why Choose Us', href: '#why-choose-us' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -111,7 +110,7 @@ const Header = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                INTERNATIONALS
+                INTERNATIONAL
               </motion.p>
             </motion.div>
           </motion.div>

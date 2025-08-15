@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Eye, Star, Shield, Globe, Award, ArrowRight, Phone } from "lucide-react";
+import { Eye, Star, Shield, Globe, Award, ArrowRight, Phone,Clock, PhoneCall } from "lucide-react";
+import { Span } from "next/dist/trace";
 import { useRef } from "react";
 
 const Hero = () => {
@@ -98,7 +99,7 @@ const Hero = () => {
             }}
             animate={{
               y: [0, -15, 0],
-              opacity: [0.2, 0.5, 0.2],
+              opacity: [0.5, 0.7, 0.5],
               scale: [1, 1.1, 1]
             }}
             transition={{
@@ -124,7 +125,7 @@ const Hero = () => {
           className="absolute top-1/3 left-1/3 w-48 h-48 rounded-full border border-blue-200/20"
           animate={{
             scale: [1, 1.05, 1],
-            opacity: [0.1, 0.3, 0.1]
+            opacity: [0.5, 0.7, 0.5 ]
           }}
           transition={{
             duration: 8,
@@ -137,7 +138,7 @@ const Hero = () => {
           animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
-            opacity: [0.3, 0.5, 0.3]
+            opacity: [0.5, 0.7, 0.5]
           }}
           transition={{
             duration: 10,
@@ -159,7 +160,7 @@ const Hero = () => {
           className="max-w-5xl mx-auto"
         >
           {/* Brand Badge */}
-          <motion.div
+          {/* <motion.div
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200/50 rounded-full px-6 py-3 mb-8 sm:mb-4 sm:mt-4"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,7 +170,7 @@ const Hero = () => {
               <Star className="w-4 h-4 text-white" />
             </div>
             <span className="text-blue-700 font-medium">Premium Vision Solutions</span>
-          </motion.div>
+          </motion.div> */}
 
           {/* Main Headline */}
           <motion.h1 
@@ -178,21 +179,22 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <span className="block sm:-mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Vision Beyond</span>
+            <span className="block text-5xl sm:-mb-4 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Unveil Your</span>
             <span className="bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
-              Expectations
+              TRUE VISION
             </span>
           </motion.h1>
           
           {/* Tagline */}
           <motion.p 
-            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-slate-700 font-light max-w-3xl mx-auto px-4"
+            className="text-lg sm:text-xl md:text-2xl mb-2 sm:mb-2 text-slate-700 font-light max-w-3xl mx-auto px-4 flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Experience crystal-clear vision with our premium collection of medical-grade contact lenses. 
-            <span className="text-blue-700 font-medium"> Comfort meets clarity.</span>
+            <span className="">Experience crystal clear vision with premium collection of</span>
+            <span className="text-blue-700 font-medium">contact lenses</span>. 
+            {/* <span className="text-blue-700 font-medium"> Comfort meets clarity.</span> */}
           </motion.p>
           
           {/* Feature Pills */}
@@ -203,9 +205,12 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1 }}
           >
             {[
-              { icon: Shield, text: "FDA Approved" },
+              { icon: Shield, text: "FDA Approved Products" },
               { icon: Globe, text: "Global Shipping" },
-              { icon: Award, text: "Premium Quality" }
+              { icon: Award, text: "Premium Quality" },
+              { icon: Clock, text: "On time delivery" },
+              { icon: PhoneCall, text: "Customer Support" },
+
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -244,7 +249,7 @@ const Hero = () => {
               </span>
             </motion.button>
             
-            <motion.button 
+            {/* <motion.button 
               className="group border-2 border-blue-300/60 text-slate-700 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -253,11 +258,11 @@ const Hero = () => {
                 <Phone className="w-4 sm:w-5 h-4 sm:h-5" />
                 <span>Contact Us</span>
               </span>
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
           {/* Trust Indicators */}
-          <motion.div
+          {/* <motion.div
             className="mt-8 pt-6 border-t border-slate-200/30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -276,7 +281,7 @@ const Hero = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </motion.div>
     </motion.section>

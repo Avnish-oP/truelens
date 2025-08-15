@@ -146,9 +146,9 @@ export default function Home() {
           </SectionTransition>
 
           {/* Why Choose Us Section */}
-          <SectionTransition id="why-choose-us" delay={0.2}>
+          {/* <SectionTransition id="why-choose-us" delay={0.2}>
             <WhyChooseUsSection />
-          </SectionTransition>
+          </SectionTransition> */}
 
           {/* Contact Section */}
           <SectionTransition id="contact" delay={0.1}>

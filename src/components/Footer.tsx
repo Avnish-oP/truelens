@@ -82,24 +82,18 @@ const Footer = () => {
               </motion.div>
               <div>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-                  Truelens Internationals
+                  Truelens International
                 </h3>
-                <p className="text-slate-300 text-sm">Premium Vision Solutions</p>
+                <p className="text-slate-300 text-sm">Unveil your true vision</p>
               </div>
             </div>
-            
-            <p className="text-slate-300 leading-relaxed mb-8 max-w-md">
-              Your trusted partner in vision care since 2009. We provide premium quality contact lenses 
-              with medical-grade precision, ensuring exceptional comfort and crystal-clear vision for customers worldwide.
-            </p>
 
             {/* Trust Indicators */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 gap-4 mb-8">
               {[
                 { icon: Shield, text: "FDA Approved", color: "from-emerald-500 to-emerald-600" },
-                { icon: Heart, text: "50K+ Happy Customers", color: "from-rose-500 to-rose-600" },
-                { icon: Clock, text: "24/7 Support", color: "from-blue-500 to-blue-600" },
-                { icon: Eye, text: "15+ Years Experience", color: "from-purple-500 to-purple-600" }
+                { icon: Heart, text: "Satisfied Customers", color: "from-rose-500 to-rose-600" },
+                { icon: Clock, text: "24/7 Support", color: "from-blue-500 to-blue-600" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -118,9 +112,6 @@ const Footer = () => {
             {/* Social Media */}
             <div className="flex space-x-3">
               {[
-                { icon: Facebook, href: "#", label: "Facebook", color: "hover:bg-blue-600" },
-                { icon: Twitter, href: "#", label: "Twitter", color: "hover:bg-sky-500" },
-                { icon: Instagram, href: "#", label: "Instagram", color: "hover:bg-pink-600" },
                 { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:bg-blue-700" }
               ].map((social, index) => (
                 <motion.a
@@ -148,10 +139,8 @@ const Footer = () => {
               {[
                 { name: "About Us", href: "#about" },
                 { name: "Our Products", href: "#products" },
-                { name: "Why Choose Us", href: "#why-choose-us" },
                 { name: "Contact Us", href: "#contact" },
                 { name: "Customer Reviews", href: "#reviews" },
-                { name: "Eye Care Tips", href: "#tips" }
               ].map((link, index) => (
                 <li key={index}>
                   <motion.a
@@ -175,19 +164,19 @@ const Footer = () => {
                 {
                   icon: Mail,
                   label: "Email",
-                  value: "support@truelens-intl.com",
+                  value: "orders@truelensinternational.com",
                   color: "from-blue-500 to-blue-600"
                 },
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+1 (555) 123-4567",
+                  value: "+91-9660966825",
                   color: "from-emerald-500 to-emerald-600"
                 },
                 {
                   icon: MapPin,
-                  label: "Address",
-                  value: "123 Vision Boulevard, Innovation District\nNew York, NY 10001",
+                  label: "Location",
+                  value: "Gurugram, Haryana, India",
                   color: "from-purple-500 to-purple-600"
                 }
               ].map((contact, index) => (

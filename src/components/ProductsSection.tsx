@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Eye, Palette, Shield, Layers, Sparkles, Heart } from "lucide-react";
+import { Eye, Palette, Shield, Layers, Sparkles, Heart, LucideEye, EyeClosed, ScanEye } from "lucide-react";
 
 const ProductsSection = () => {
   const [ref, inView] = useInView({
@@ -50,6 +50,14 @@ const ProductsSection = () => {
       accent: "bg-blue-500"
     },
     {
+      title: "Bi-Weekly/Monthly Lenses",
+      description: "Comfortable and convenient lenses designed for extended wear, providing clear vision and hydration.",
+      icon: ScanEye,
+      gradient: "from-rose-500 to-red-400",
+      bgGradient: "from-rose-50 to-red-50",
+      accent: "bg-rose-500"
+    },
+    {
       title: "Colored Contact Lenses",
       description: "Transform your look with our premium colored lenses featuring natural patterns and vibrant hues.",
       icon: Palette,
@@ -74,21 +82,14 @@ const ProductsSection = () => {
       accent: "bg-orange-500"
     },
     {
-      title: "Specialty Solutions",
+      title: "Solutions",
       description: "Custom-designed lenses for unique eye conditions including keratoconus and irregular corneas.",
       icon: Sparkles,
       gradient: "from-indigo-500 to-blue-400",
       bgGradient: "from-indigo-50 to-blue-50",
       accent: "bg-indigo-500"
     },
-    {
-      title: "Lens Care Systems",
-      description: "Complete care solutions with advanced cleaning and disinfection for optimal lens hygiene.",
-      icon: Heart,
-      gradient: "from-rose-500 to-red-400",
-      bgGradient: "from-rose-50 to-red-50",
-      accent: "bg-rose-500"
-    }
+    
   ];
 
   return (
@@ -130,18 +131,17 @@ const ProductsSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-6">
             <Eye className="w-4 h-4" />
             Our Premium Collection
-          </div>
+          </div> */}
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6">
-            Vision Solutions
+            Our Products
           </h2>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Discover our comprehensive range of premium contact lenses, each crafted with precision 
-            to deliver exceptional comfort, clarity, and performance for every lifestyle.
+            Discover our comprehensive range of premium contact lenses <Eye className="inline-block w-5 h-5 text-blue-900" />
           </p>
         </motion.div>
 

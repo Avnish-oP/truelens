@@ -60,29 +60,21 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "support@truelens-intl.com",
+      content: "orders@truelensinternational.com",
       subtitle: "Professional support within 2 hours",
       color: "blue"
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
-      subtitle: "Monday - Friday, 9AM - 6PM EST",
+      content: "+91-9660966825",
+      subtitle: "Monday - Friday, 9AM - 9PM IST",
       color: "emerald"
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      content: "123 Vision Boulevard, Innovation District",
-      subtitle: "New York, NY 10001, United States",
-      color: "purple"
     },
     {
       icon: Clock,
       title: "Business Hours",
-      content: "Monday - Friday: 9AM - 6PM",
-      subtitle: "Saturday: 10AM - 4PM EST",
+      content: "Monday - Saturday: 9AM - 9PM IST",
       color: "orange"
     }
   ];
@@ -136,18 +128,17 @@ const ContactSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-6">
             <Globe className="w-4 h-4" />
             Get In Touch
-          </div>
+          </div> */}
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
-            Contact Our Experts
+            Contact Us
           </h2>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to experience crystal-clear vision? Our dedicated team of eye care professionals 
-            is here to provide personalized guidance and support for all your vision needs.
+            Have questions about our products?
           </p>
         </motion.div>
 
@@ -160,15 +151,7 @@ const ContactSection = () => {
               animate={inView ? "visible" : "hidden"}
               className="space-y-6"
             >
-              <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  Contact Information
-                </h3>
-                <p className="text-slate-600 leading-relaxed mb-8">
-                  Have questions about our products or need personalized recommendations? 
-                  We&apos;re here to help you find the perfect vision solution.
-                </p>
-              </motion.div>
+          
 
               {contactInfo.map((item, index) => (
                 <motion.div
@@ -287,9 +270,7 @@ const ContactSection = () => {
                       >
                         <option value="">Select a subject</option>
                         <option value="product-inquiry">Product Inquiry</option>
-                        <option value="prescription">Prescription Consultation</option>
                         <option value="support">Customer Support</option>
-                        <option value="partnership">Business Partnership</option>
                         <option value="other">Other</option>
                       </select>
                     </motion.div>
@@ -311,7 +292,7 @@ const ContactSection = () => {
                       required
                       rows={5}
                       className="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 hover:bg-white transition-all duration-300 resize-none"
-                      placeholder="Tell us about your vision needs, questions, or how we can help you..."
+                      placeholder="Tell us about your questions, or how we can help you..."
                     />
                   </motion.div>
 

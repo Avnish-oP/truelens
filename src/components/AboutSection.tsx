@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Users, Trophy, Clock, Award, Eye, Shield, Globe, Sparkles } from "lucide-react";
+import { Users, Trophy, Clock, Award, Eye, Shield, Globe, Sparkles, Truck, Phone } from "lucide-react";
 
 const AboutSection = () => {
   const [ref, inView] = useInView({
@@ -79,7 +79,7 @@ const AboutSection = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <motion.div
+        {/* <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -87,10 +87,10 @@ const AboutSection = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full text-blue-700 font-medium mb-6"
+            className="inline-flex text-3xl items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full text-blue-700 font-semibold antialiased mb-"
           >
-            <Eye className="w-4 h-4" />
-            About Our Vision
+            <Eye className="w-8 h-8" />
+            About Us
           </motion.div>
           
           <motion.h2
@@ -107,7 +107,7 @@ const AboutSection = () => {
             Pioneering the future of vision care with innovative contact lens solutions 
             that combine cutting-edge technology, medical-grade quality, and unparalleled comfort.
           </motion.p>
-        </motion.div>
+        </motion.div> */}
 
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -117,22 +117,19 @@ const AboutSection = () => {
             className="space-y-8"
           >
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-3xl font-bold text-slate-900">
-                Excellence in Every Lens
+              <h3 className="text-5xl font-bold text-slate-900">
+                About Us
               </h3>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                With over 15 years of expertise in the eye care industry, we&apos;ve revolutionized 
-                how people experience vision correction. Our commitment to innovation and quality 
-                has earned the trust of over 50,000 customers worldwide.
+              <p className="text-xl text-slate-600 leading-relaxed">
+                We are a trusted global B2B exporter of branded contact lenses, headquartered in Gurugram, Haryana(India) . Our range includes spherical, multifocal, coloured, and toric lenses including lens solutions. Committed to customer orientation, timely delivery, and best market practices, we ensure quality products and seamless service to meet the evolving needs of our valued partners worldwide.
+
               </p>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Every lens undergoes rigorous testing and quality assurance to ensure optimal 
-                comfort, clarity, and safety. We don&apos;t just sell lenses – we deliver confidence 
-                in every blink.
-              </p>
+                <p className="text-xl text-slate-600 leading-relaxed">
+                  As a leading exporter, we supply branded contact lenses worldwide, ensuring genuine products, reliable delivery, and tailored solutions to meet diverse client needs.
+                </p>
             </motion.div>
             
-            <motion.div
+            {/* <motion.div
               variants={containerVariants}
               className="grid grid-cols-2 gap-6"
             >
@@ -160,7 +157,7 @@ const AboutSection = () => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div 
@@ -173,29 +170,29 @@ const AboutSection = () => {
               {[
                 { 
                   icon: Shield, 
-                  title: "Medical Grade Quality", 
-                  description: "FDA-approved materials with rigorous quality control and safety standards.",
+                  title: "FDA Approved", 
+                  description: "FDA-approved lenses with rigorous quality control and safety standards.",
                   gradient: "from-blue-500/10 to-cyan-500/10",
                   iconColor: "from-blue-500 to-cyan-500"
                 },
                 { 
                   icon: Globe, 
                   title: "Global Reach", 
-                  description: "Serving customers in 50+ countries with fast, secure worldwide delivery.",
+                  description: "Serving customers in 20+ countries with fast, secure worldwide delivery.",
                   gradient: "from-indigo-500/10 to-purple-500/10",
                   iconColor: "from-indigo-500 to-purple-500"
                 },
                 { 
-                  icon: Sparkles, 
-                  title: "Innovation First", 
-                  description: "Continuously researching breakthrough technologies in vision correction.",
+                  icon: Truck, 
+                  title: "Seamless Delivery", 
+                  description: "Reliable logistics network ensuring timely and Hassle-free delivery of products.",
                   gradient: "from-purple-500/10 to-pink-500/10",
                   iconColor: "from-purple-500 to-pink-500"
                 },
                 { 
-                  icon: Eye, 
-                  title: "Expert Support", 
-                  description: "Professional eye care specialists available for personalized assistance.",
+                  icon: Phone, 
+                  title: "Customer Support", 
+                  description: "24/7 customer support for all your inquiries.",
                   gradient: "from-cyan-500/10 to-teal-500/10",
                   iconColor: "from-cyan-500 to-teal-500"
                 }

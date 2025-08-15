@@ -105,13 +105,13 @@ const WhyChooseUsSection = () => {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-100 to-blue-100 rounded-full text-slate-700 font-medium mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-100 to-blue-100 rounded-full text-slate-700 font-medium mb-6">
             <Shield className="w-4 h-4" />
             Why Choose Truelens
-          </div>
+          </div> */}
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 bg-clip-text text-transparent mb-6">
-            Excellence in Every Detail
+            Why Choose Us?
           </h2>
           
           <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
