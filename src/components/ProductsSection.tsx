@@ -15,16 +15,16 @@ const ProductsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         delayChildren: 0.2
       }
     }
   };
 
-  const cardVariants: Variants = {
+  const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
+      y: 80,
       scale: 0.9,
       rotateX: -15
     },
@@ -35,7 +35,41 @@ const ProductsSection = () => {
       rotateX: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const
+      }
+    }
+  };
+
+  // Enhanced scroll trigger variants
+  const staggerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const productCardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 100, 
+      scale: 0.8,
+      rotateY: -10
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        duration: 0.9,
+        ease: "easeOut" as const,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
       }
     }
   };
@@ -93,31 +127,31 @@ const ProductsSection = () => {
   ];
 
   return (
-    <section id="products" className="relative px-4 py-24 bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50/30 overflow-hidden" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0">
+    <section id="products" className="relative px-4 py-24 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/60" ref={ref}>
+      {/* Minimal background elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-200/10 to-purple-200/10 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-200/5 to-purple-200/5 rounded-full blur-3xl"
           animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1]
+            x: [0, 20, 0],
+            y: [0, -10, 0],
+            scale: [1, 1.03, 1]
           }}
           transition={{
-            duration: 12,
+            duration: 14,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-r from-indigo-200/10 to-cyan-200/10 rounded-full blur-3xl"
+          className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-r from-indigo-200/5 to-cyan-200/5 rounded-full blur-3xl"
           animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 0.8, 1]
+            x: [0, -15, 0],
+            y: [0, 15, 0],
+            scale: [1, 0.97, 1]
           }}
           transition={{
-            duration: 10,
+            duration: 16,
             repeat: Infinity,
             ease: "easeInOut"
           }}

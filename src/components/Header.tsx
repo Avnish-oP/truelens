@@ -18,9 +18,9 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'About', href: '#about' },
+    { name: 'About Us', href: '#about' },
     { name: 'Products', href: '#products' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact Us', href: '#contact' }
   ];
 
   const fadeInUp = {

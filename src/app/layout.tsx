@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Truelens Internationals - Premium Eye Lenses | Precision in Every Vision",
+  title: "Truelens International - Premium Eye Lenses | Precision in Every Vision",
   description: "Professional supplier of high-quality eye lenses combining medical-grade precision with style. Soft lenses, colored lenses, toric lenses with international shipping.",
   keywords: "eye lenses, contact lenses, colored lenses, toric lenses, medical grade lenses, vision correction, international shipping",
   authors: [{ name: "Truelens Internationals" }],

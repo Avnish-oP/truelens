@@ -45,13 +45,50 @@ const ContactSection = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const
+        ease: "easeOut" as const
+      }
+    }
+  };
+
+  // Enhanced scroll trigger variants
+  const slideInFromLeftVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
+  const slideInFromRightVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut" as const
       }
     }
   };
@@ -90,31 +127,31 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative px-4 py-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 overflow-hidden" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0">
+    <section id="contact" className="relative px-4 py-24 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/60" ref={ref}>
+      {/* Minimal background elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-200/15 to-purple-200/15 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-56 h-56 bg-gradient-to-r from-blue-200/6 to-purple-200/6 rounded-full blur-3xl"
           animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1]
+            x: [0, 25, 0],
+            y: [0, -12, 0],
+            scale: [1, 1.04, 1]
           }}
           transition={{
-            duration: 15,
+            duration: 11,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-indigo-200/15 to-cyan-200/15 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-72 h-72 bg-gradient-to-r from-indigo-200/6 to-cyan-200/6 rounded-full blur-3xl"
           animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 0.8, 1]
+            x: [0, -20, 0],
+            y: [0, 18, 0],
+            scale: [1, 0.96, 1]
           }}
           transition={{
-            duration: 12,
+            duration: 13,
             repeat: Infinity,
             ease: "easeInOut"
           }}

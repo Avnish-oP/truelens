@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ReactNode, useRef } from "react";
 
 interface SectionTransitionProps {
@@ -19,26 +19,49 @@ const SectionTransition = ({
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start 0.8", "end 0.2"]
   });
 
-  // Reduced parallax effect for smoother performance
-  const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8]);
+  // Apple-style smooth parallax with spring physics
+  const springConfig = {
+    stiffness: 300,
+    damping: 30,
+    mass: 0.8
+  };
+  
+  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  
+  // Smooth, subtle parallax movement
+  const y = useTransform(smoothProgress, [0, 1], [30, -30]);
+  const opacity = useTransform(smoothProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8]);
+  const scale = useTransform(smoothProgress, [0, 0.5, 1], [0.95, 1, 0.98]);
 
   return (
     <motion.div
       ref={ref}
       id={id}
       className={`relative will-change-transform ${className}`}
-      style={{ y, opacity }}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-15%" }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94]
+      style={{ 
+        y, 
+        opacity, 
+        scale,
+        transformOrigin: "center center"
+      }}
+      initial={{ opacity: 0, y: 60, scale: 0.9 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        transition: {
+          duration: 1.2,
+          delay,
+          ease: [0.25, 0.46, 0.45, 0.94]  // Apple's signature easing
+        }
+      }}
+      viewport={{ 
+        once: true, 
+        margin: "-15%",
+        amount: 0.3 
       }}
     >
       {children}

@@ -12,77 +12,49 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
 
-  // Optimized parallax effects with reduced movement for smoother performance
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const yFast = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const ySlow = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [1, 0.9, 0.3]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.02]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  // Apple-style smooth parallax effects
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const yFast = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const ySlow = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 1, 0.8, 0.4]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const blur = useTransform(scrollYProgress, [0, 1], [0, 2]);
 
   return (
     <motion.section 
       ref={ref}
-      style={{ y: ySlow }}
-      className="relative z-0 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 will-change-transform"
+      style={{ y: ySlow, opacity }}
+      className="relative z-10 min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50/90 via-blue-50/50 to-indigo-50/70 will-change-transform"
     >
-      {/* Optimized Background Elements with reduced animations */}
-      <motion.div className="absolute inset-0 will-change-transform" style={{ y: yFast, scale, rotate }}>
+      {/* Apple-inspired smooth background elements */}
+      <motion.div 
+        className="absolute inset-0 will-change-transform overflow-hidden" 
+        style={{ y: yFast, scale, filter: `blur(${blur}px)` }}
+      >
         <motion.div
-          className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-200/15 to-purple-200/15 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-200/6 to-purple-200/6 rounded-full blur-3xl"
           animate={{
-            x: [0, 50, 0],
-            y: [0, -25, 0],
-            scale: [1, 1.1, 1]
+            x: [0, 20, 0],
+            y: [0, -10, 0],
+            scale: [1, 1.03, 1]
           }}
           transition={{
-            duration: 20,
+            duration: 12,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-indigo-200/15 to-cyan-200/15 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-r from-indigo-200/6 to-cyan-200/6 rounded-full blur-3xl"
           animate={{
-            x: [0, -40, 0],
-            y: [0, 30, 0],
-            scale: [1, 0.9, 1]
+            x: [0, -15, 0],
+            y: [0, 15, 0],
+            scale: [1, 0.97, 1]
           }}
           transition={{
-            duration: 18,
+            duration: 10,
             repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        {/* Simplified Floating Orbs */}
-        <motion.div
-          className="absolute top-1/2 left-10 w-32 h-32 bg-gradient-to-r from-blue-300/8 to-purple-300/8 rounded-full blur-2xl"
-          style={{ y }}
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -100, 0],
-            opacity: [0.3, 0.7, 0.3]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-indigo-300/15 to-blue-300/15 rounded-full blur-xl"
-          style={{ y: yFast }}
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 80, 0],
-            opacity: [0.2, 0.6, 0.2]
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
         />
       </motion.div>
@@ -226,39 +198,48 @@ const Hero = () => {
           
           {/* CTA Buttons */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
+            className="flex justify-center items-center px-4"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 1, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
+            {/* Apple-style primary CTA button */}
             <motion.button 
-              className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden w-full sm:w-auto"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+              className="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-5 rounded-2xl font-semibold text-xl shadow-2xl overflow-hidden backdrop-blur-sm"
+              whileHover={{ 
+                scale: 1.02,
+                y: -3,
+                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20
+              }}
             >
+              {/* Apple-style shimmer effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                initial={{ x: '-100%', skewX: -45 }}
+                whileHover={{ 
+                  x: '200%',
+                  transition: { duration: 0.8, ease: "easeOut" }
+                }}
               />
-              <span className="relative flex items-center space-x-2">
-                <Eye className="w-5 h-5" />
+              
+              <span className="relative flex items-center justify-center space-x-3">
+                <Eye className="w-6 h-6" />
                 <span>Explore Products</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <motion.div
+                  className="flex items-center"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </motion.div>
               </span>
             </motion.button>
-            
-            {/* <motion.button 
-              className="group border-2 border-blue-300/60 text-slate-700 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="flex items-center justify-center space-x-2">
-                <Phone className="w-4 sm:w-5 h-4 sm:h-5" />
-                <span>Contact Us</span>
-              </span>
-            </motion.button> */}
           </motion.div>
 
           {/* Trust Indicators */}

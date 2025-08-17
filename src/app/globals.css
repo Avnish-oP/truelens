@@ -16,16 +16,28 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    /* Apple-style smooth scrolling with momentum */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: y proximity;
   }
   
   body {
-    background-color: #bbbdbf;
+    background: linear-gradient(135deg, 
+      rgb(248 250 252 / 0.9) 0%, 
+      rgb(239 246 255 / 0.5) 25%,
+      rgb(238 242 255 / 0.7) 75%,
+      rgb(248 250 252 / 0.9) 100%);
+    background-attachment: fixed;
     color: #222222;
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
+    /* Apple-style typography smoothing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   /* Remove default margins and ensure footer sticks to bottom */
@@ -40,8 +52,7 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
+    background: transparent;
   }
 
   footer {
@@ -78,23 +89,57 @@
     will-change: transform;
   }
 
-  /* Smooth scroll snapping with performance optimizations */
+  /* Apple-style smooth scroll and section transitions */
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-snap-type: y proximity;
       scroll-behavior: smooth;
+      /* Enhanced momentum scrolling */
+      -webkit-overflow-scrolling: touch;
     }
     
     section {
       scroll-snap-align: start;
+      scroll-margin-top: 80px;
+      /* Apple-style section transitions */
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Smooth section blending */
+    section + section {
+      position: relative;
     }
   }
 
-  /* GPU acceleration for smooth animations */
+  /* Enhanced GPU acceleration for Apple-style smooth animations */
   .parallax-element {
+    will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
+    /* Apple-style hardware acceleration */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+  }
+
+  /* Apple-style continuous sections */
+  .continuous-sections {
+    position: relative;
+  }
+
+  .continuous-sections > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Global parallax container optimization */
+  .parallax-container {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 
   /* Optimize blur effects */
