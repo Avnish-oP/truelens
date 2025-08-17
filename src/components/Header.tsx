@@ -79,15 +79,15 @@ const Header = () => {
       />
       <nav className="container-custom relative z-10">
         <div className="flex items-center justify-between py-3">
-          {/* Logo */}
+          {/* Logo with Blinking Effect on Hover */}
           <motion.div 
-            className="flex items-center space-x-3 cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer group"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
             <div className="relative">
               <motion.div 
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg"
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg overflow-hidden"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.8 }}
                 animate={{ 
@@ -101,7 +101,41 @@ const Header = () => {
                   animationIterationCount: "infinite"
                 }}
               >
-                <Eye className="w-5 h-5 text-white" />
+                <div className="relative">
+                  <Eye className="w-5 h-5 text-white" />
+                  
+                  {/* Eye Blink Effect - Top Eyelid */}
+                  <motion.div
+                    className="absolute top-0 left-0 w-5 h-2.5 bg-gradient-to-br from-blue-600 to-purple-600 origin-bottom"
+                    initial={{ scaleY: 0 }}
+                    whileHover={{
+                      scaleY: [0, 1, 0],
+                      transition: {
+                        duration: 0.15,
+                        times: [0, 0.5, 1],
+                        repeat: 4,
+                        repeatDelay: 0.3,
+                        ease: "easeInOut"
+                      }
+                    }}
+                  />
+                  
+                  {/* Eye Blink Effect - Bottom Eyelid */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-5 h-2.5 bg-gradient-to-br from-blue-600 to-purple-600 origin-top"
+                    initial={{ scaleY: 0 }}
+                    whileHover={{
+                      scaleY: [0, 1, 0],
+                      transition: {
+                        duration: 0.15,
+                        times: [0, 0.5, 1],
+                        repeat: 4,
+                        repeatDelay: 0.3,
+                        ease: "easeInOut"
+                      }
+                    }}
+                  />
+                </div>
               </motion.div>
               <motion.div 
                 className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
@@ -114,6 +148,14 @@ const Header = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
+                whileHover={{
+                  opacity: [1, 0.1, 1, 0.1, 1, 0.1, 1],
+                  transition: {
+                    duration: 1.2,
+                    repeat: 2,
+                    ease: "easeInOut"
+                  }
+                }}
               />
             </div>
             <motion.div
@@ -124,14 +166,41 @@ const Header = () => {
               <motion.h1 
                 className="text-xl font-bold font-poppins bg-gradient-to-r from-slate-800 via-blue-700 to-purple-700 bg-clip-text text-transparent"
                 whileHover={{ scale: 1.05 }}
+                animate={{
+                  opacity: [1, 0.7, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                Truelens
+                <motion.span
+                  whileHover={{
+                    opacity: [1, 0.3, 1, 0.3, 1],
+                    transition: {
+                      duration: 1.2,
+                      repeat: 2,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  Truelens
+                </motion.span>
               </motion.h1>
               <motion.p 
                 className="text-xs text-slate-600 font-medium -mt-1 tracking-widest"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
+                whileHover={{
+                  opacity: [1, 0.4, 1, 0.4, 1],
+                  transition: {
+                    duration: 1.2,
+                    repeat: 2,
+                    ease: "easeInOut"
+                  }
+                }}
               >
                 INTERNATIONAL
               </motion.p>

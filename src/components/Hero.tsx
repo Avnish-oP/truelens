@@ -131,7 +131,7 @@ const Hero = () => {
 
       {/* Main Content with optimized mobile performance */}
       <motion.div 
-        className={`relative top-14 z-10 container-custom text-center px-4 sm:px-6 lg:px-8`}
+        className={`relative top-2 z-10 container-custom text-center px-4 sm:px-6 lg:px-8`}
         style={{ opacity, y: isMobile ? undefined : ySlow }}
       >
         <motion.div
@@ -144,9 +144,9 @@ const Hero = () => {
           }}
           className="max-w-5xl mx-auto"
         >
-          {/* Main Headline with reduced animation on mobile */}
-          <motion.h1 
-            className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-2"
+          {/* Main Headline with animated box effect */}
+          <motion.div
+            className="relative inline-block mb-6 sm:mb-4"
             initial={{ opacity: 0, y: isMobile ? 20 : 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -155,15 +155,110 @@ const Hero = () => {
               ease: "easeOut"
             }}
           >
-            <span className="block text-5xl sm:-mb-4 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Unveil Your</span>
-            <span className="bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
-              TRUE VISION
-            </span>
-          </motion.h1>
+            {/* Animated border box */}
+            <motion.div
+              className="absolute inset-0 rounded-2xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ 
+                opacity: [0.7, 1, 0.7], 
+                scale: [0.98, 1.02, 0.98],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            >
+              {/* Gradient border */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-indigo-500/30 blur-sm" />
+              <div className="absolute inset-[2px] rounded-2xl bg-gradient-to-r from-white/80 via-blue-50/60 to-white/80 backdrop-blur-sm" />
+              
+              {/* Corner highlights */}
+              <motion.div
+                className="absolute top-0 left-0 w-6 h-6 border-l-4 border-t-4 border-blue-500 rounded-tl-2xl"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="absolute top-0 right-0 w-6 h-6 border-r-4 border-t-4 border-purple-500 rounded-tr-2xl"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              />
+              <motion.div
+                className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-indigo-500 rounded-bl-2xl"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              />
+              <motion.div
+                className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-cyan-500 rounded-br-2xl"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              />
+              
+              {/* Scanning line effect */}
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-blue-400 to-transparent"
+                  animate={{
+                    x: ['0%', '100%', '0%'],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                  }}
+                />
+              )}
+            </motion.div>
+
+            {/* Title content */}
+            <motion.h1 
+              className="relative z-10 text-6xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl font-bold leading-tight px-6 py-4"
+            >
+              <span className="block sm:text-5xl text-4xl sm:-mb-4 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Unveil Your</span>
+              <span className="bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
+                TRUE VISION
+              </span>
+            </motion.h1>
+          </motion.div>
           
           {/* Tagline */}
           <motion.p 
-            className="text-lg sm:text-xl md:text-2xl mb-2 sm:mb-2 text-slate-700 font-light max-w-3xl mx-auto px-4 flex flex-col"
+            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-6 text-slate-700 font-light max-w-3xl mx-auto px-4 flex flex-col"
             initial={{ opacity: 0, y: isMobile ? 15 : 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -172,13 +267,13 @@ const Hero = () => {
               ease: "easeOut"
             }}
           >
-            <span className="">Experience crystal clear vision with premium collection of</span>
-            <span className="text-blue-700 font-medium">contact lenses</span>. 
+            <span className="">Experience crystal clear vision with premium collection of <span className="text-blue-700 sm:hidden font-medium">contact lenses</span> </span>
+            <span className="text-blue-700 hidden sm:block font-medium">contact lenses</span> 
           </motion.p>
           
           {/* Feature Pills with reduced animation */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4"
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-8 px-4"
             initial={{ opacity: 0, y: isMobile ? 10 : 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -205,7 +300,7 @@ const Hero = () => {
                 } : {}}
               >
                 <item.icon className="w-4 h-4 text-blue-600" />
-                <span className="text-xs sm:text-sm font-medium text-slate-700">{item.text}</span>
+                <span className="text-sm sm:text-base font-medium text-slate-700">{item.text}</span>
               </motion.div>
             ))}
           </motion.div>
