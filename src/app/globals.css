@@ -89,6 +89,52 @@
     will-change: transform;
   }
 
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    * {
+      /* Reduce animation complexity on mobile */
+      transition-duration: 0.2s !important;
+      animation-duration: 0.5s !important;
+    }
+
+    /* Disable heavy effects on mobile */
+    .blur-3xl, .blur-2xl, .blur-xl {
+      filter: blur(4px) !important;
+    }
+
+    /* Optimize mobile scrolling */
+    body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    /* Reduce parallax intensity on mobile */
+    .parallax-element {
+      transform: none !important;
+    }
+
+    /* Optimize backdrop-blur for mobile */
+    .backdrop-blur-sm, .backdrop-blur, .backdrop-blur-md {
+      backdrop-filter: none !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    *:hover {
+      transform: none !important;
+      scale: none !important;
+    }
+
+    /* Optimize for touch interactions */
+    button, .clickable {
+      transform: translateZ(0);
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
   /* Apple-style smooth scroll and section transitions */
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -165,6 +211,56 @@
     
     .parallax-element {
       transform: none !important;
+    }
+  }
+
+  /* Performance boost for mobile devices */
+  @media screen and (max-device-width: 768px) {
+    * {
+      /* Force hardware acceleration for smoother animations */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    /* Optimize repaints and reflows */
+    .will-change-transform {
+      will-change: auto !important;
+    }
+
+    /* Reduce complex effects that cause jank */
+    .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-3xl {
+      backdrop-filter: none !important;
+      background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    /* Optimize images and media for mobile */
+    img, video {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    /* Disable 3D transforms on mobile for better performance */
+    .preserve-3d {
+      transform-style: flat !important;
+    }
+  }
+
+  /* Low-end device optimizations */
+  @media screen and (max-device-width: 480px) {
+    /* Further reduce effects on small screens */
+    .blur-xl, .blur-2xl, .blur-3xl {
+      filter: none !important;
+    }
+
+    /* Disable shadows on low-end devices */
+    .shadow-lg, .shadow-xl, .shadow-2xl {
+      box-shadow: none !important;
+    }
+
+    /* Optimize text rendering */
+    * {
+      text-rendering: optimizeSpeed !important;
+      -webkit-font-smoothing: subpixel-antialiased !important;
     }
   }
 }

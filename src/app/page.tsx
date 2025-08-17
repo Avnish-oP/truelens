@@ -13,7 +13,18 @@ import SectionTransition from '@/components/SectionTransition';
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Optimized spring physics for smoother progress bar
   const scaleX = useSpring(scrollYProgress, {
@@ -23,16 +34,16 @@ export default function Home() {
     restDelta: 0.0001
   });
 
-  // Apple-inspired smooth parallax effects
-  const backgroundY = useTransform(scrollY, [0, 2000], [0, -100]);
-  const midgroundY = useTransform(scrollY, [0, 2000], [0, -200]);
-  const contentY = useTransform(scrollY, [0, 2000], [0, 50]);
+  // Reduced parallax effects for mobile performance
+  const backgroundY = useTransform(scrollY, [0, 2000], isMobile ? [0, -20] : [0, -100]);
+  const midgroundY = useTransform(scrollY, [0, 2000], isMobile ? [0, -40] : [0, -200]);
+  const contentY = useTransform(scrollY, [0, 2000], isMobile ? [0, 10] : [0, 50]);
   
-  // Scroll-based opacity for sections
+  // Scroll-based opacity for sections (reduced for mobile)
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.3]);
-  const sectionScale = useTransform(scrollY, [0, 300], [1, 0.95]);
-  // main content vertical parallax transform (avoid calling hooks in JSX)
-  const mainY = useTransform(scrollY, [0, 1000], [0, -20]);
+  const sectionScale = useTransform(scrollY, [0, 300], isMobile ? [1, 1] : [1, 0.95]);
+  // main content vertical parallax transform (reduced for mobile)
+  const mainY = useTransform(scrollY, [0, 1000], isMobile ? [0, -5] : [0, -20]);
 
   // Navigation sections and precomputed motion heights
   const navSections = [
@@ -96,9 +107,9 @@ export default function Home() {
 
   return (
     <>
-      {/* Apple-style reading progress indicator */}
+      {/* Mobile-optimized reading progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 backdrop-blur-sm z-50"
+        className={`fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 z-50 ${isMobile ? '' : 'backdrop-blur-sm'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -109,134 +120,147 @@ export default function Home() {
         />
       </motion.div>
       
-      {/* Apple-style scroll progress indicator */}
-      <motion.div
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-30 space-y-3"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: showBackToTop ? 1 : 0, x: showBackToTop ? 0 : 50 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-  {navSections.map((section, index) => (
-          <motion.div
-            key={section.id}
-            className="group relative w-2 h-8 rounded-full bg-slate-300/20 overflow-hidden backdrop-blur-sm cursor-pointer border border-slate-400/10"
-            onClick={() => {
-              const element = document.getElementById(section.id);
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            whileHover={{ 
-              scale: 1.2, 
-              backgroundColor: "rgba(59, 130, 246, 0.2)",
-              borderColor: "rgba(59, 130, 246, 0.3)"
-            }}
-            title={section.label}
-          >
+      {/* Desktop scroll progress indicator */}
+      {!isMobile && (
+        <motion.div
+          className="fixed right-6 top-1/2 -translate-y-1/2 z-30 space-y-3"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: showBackToTop ? 1 : 0, x: showBackToTop ? 0 : 50 }}
+          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          {navSections.map((section, index) => (
             <motion.div
-              className="w-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
-              style={{
-                height: sectionHeights[index]
+              key={section.id}
+              className="group relative w-2 h-8 rounded-full bg-slate-300/20 overflow-hidden backdrop-blur-sm cursor-pointer border border-slate-400/10"
+              onClick={() => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
-            />
-            
-            {/* Tooltip */}
-            <motion.div
-              className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2 py-1 bg-slate-900/80 backdrop-blur-sm text-white text-xs rounded-md opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap"
-              initial={{ opacity: 0, x: 10 }}
-              whileHover={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ 
+                scale: 1.2, 
+                backgroundColor: "rgba(59, 130, 246, 0.2)",
+                borderColor: "rgba(59, 130, 246, 0.3)"
+              }}
+              title={section.label}
             >
-              {section.label}
+              <motion.div
+                className="w-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
+                style={{
+                  height: sectionHeights[index]
+                }}
+              />
+              
+              {/* Tooltip */}
+              <motion.div
+                className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2 py-1 bg-slate-900/80 backdrop-blur-sm text-white text-xs rounded-md opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap"
+                initial={{ opacity: 0, x: 10 }}
+                whileHover={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {section.label}
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </motion.div>
+      )}
 
-      {/* Apple-style floating back-to-top button */}
+      {/* Mobile-optimized back-to-top button */}
       <motion.button
-        className="fixed bottom-8 right-8 w-16 h-16 bg-white/90 backdrop-blur-xl border border-slate-200/50 rounded-2xl shadow-2xl z-40 flex items-center justify-center text-slate-700 hover:text-blue-600"
-        whileHover={{ 
+        className={`fixed ${isMobile ? 'bottom-6 right-6 w-12 h-12' : 'bottom-8 right-8 w-16 h-16'} ${isMobile ? 'bg-white/90 border border-slate-200/50' : 'bg-white/90 backdrop-blur-xl border border-slate-200/50'} rounded-2xl shadow-2xl z-40 flex items-center justify-center text-slate-700 hover:text-blue-600`}
+        whileHover={!isMobile ? { 
           scale: 1.05, 
           y: -2,
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-        }}
+        } : {}}
         whileTap={{ scale: 0.95 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        initial={{ opacity: 0, y: 100, scale: 0 }}
+        initial={{ opacity: 0, y: isMobile ? 50 : 100, scale: 0 }}
         animate={{ 
           opacity: showBackToTop ? 1 : 0,
-          y: showBackToTop ? 0 : 100,
+          y: showBackToTop ? 0 : (isMobile ? 50 : 100),
           scale: showBackToTop ? 1 : 0
         }}
         transition={{ 
-          duration: 0.4, 
-          ease: [0.25, 0.46, 0.45, 0.94],
-          type: "spring",
-          stiffness: 300,
-          damping: 20
+          duration: isMobile ? 0.3 : 0.4, 
+          ease: isMobile ? "easeOut" : [0.25, 0.46, 0.45, 0.94],
+          type: isMobile ? "tween" : "spring",
+          stiffness: isMobile ? undefined : 300,
+          damping: isMobile ? undefined : 20
         }}
       >
         <motion.div
-          animate={{ y: [0, -2, 0] }}
-          transition={{ 
+          animate={!isMobile ? { y: [0, -2, 0] } : {}}
+          transition={!isMobile ? { 
             duration: 2, 
             repeat: Infinity, 
             ease: [0.25, 0.46, 0.45, 0.94] 
-          }}
-          className="text-2xl font-bold"
+          } : {}}
+          className={`${isMobile ? 'text-lg' : 'text-2xl'} font-bold`}
         >
           ↑
         </motion.div>
       </motion.button>
       
       <main className="relative overflow-hidden">
-        {/* Apple-inspired layered parallax background */}
-        <motion.div 
-          className="fixed inset-0 z-0 pointer-events-none will-change-transform"
-          style={{ y: backgroundY }}
-        >
-          <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-r from-blue-200/4 to-purple-200/4 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-10 w-80 h-80 bg-gradient-to-r from-indigo-200/4 to-cyan-200/4 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-gradient-to-r from-purple-200/4 to-pink-200/4 rounded-full blur-3xl" />
-        </motion.div>
+        {/* Optimized background for mobile */}
+        {!isMobile ? (
+          <>
+            {/* Apple-inspired layered parallax background */}
+            <motion.div 
+              className="fixed inset-0 z-0 pointer-events-none will-change-transform"
+              style={{ y: backgroundY }}
+            >
+              <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-r from-blue-200/4 to-purple-200/4 rounded-full blur-3xl" />
+              <div className="absolute top-1/3 right-10 w-80 h-80 bg-gradient-to-r from-indigo-200/4 to-cyan-200/4 rounded-full blur-3xl" />
+              <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-gradient-to-r from-purple-200/4 to-pink-200/4 rounded-full blur-3xl" />
+            </motion.div>
 
-        <motion.div 
-          className="fixed inset-0 z-0 pointer-events-none will-change-transform"
-          style={{ y: midgroundY }}
-        >
-          <div className="absolute top-1/4 left-1/3 w-48 h-48 bg-gradient-to-r from-blue-300/2 to-indigo-300/2 rounded-full blur-2xl" />
-          <div className="absolute bottom-1/2 right-1/3 w-56 h-56 bg-gradient-to-r from-purple-300/2 to-blue-300/2 rounded-full blur-2xl" />
-          <div className="absolute top-2/3 left-1/6 w-32 h-32 bg-gradient-to-r from-cyan-300/2 to-teal-300/2 rounded-full blur-xl" />
-        </motion.div>
+            <motion.div 
+              className="fixed inset-0 z-0 pointer-events-none will-change-transform"
+              style={{ y: midgroundY }}
+            >
+              <div className="absolute top-1/4 left-1/3 w-48 h-48 bg-gradient-to-r from-blue-300/2 to-indigo-300/2 rounded-full blur-2xl" />
+              <div className="absolute bottom-1/2 right-1/3 w-56 h-56 bg-gradient-to-r from-purple-300/2 to-blue-300/2 rounded-full blur-2xl" />
+              <div className="absolute top-2/3 left-1/6 w-32 h-32 bg-gradient-to-r from-cyan-300/2 to-teal-300/2 rounded-full blur-xl" />
+            </motion.div>
 
-        {/* Floating particles for depth */}
-        <motion.div 
-          className="fixed inset-0 z-0 pointer-events-none will-change-transform"
-          style={{ y: contentY }}
-        >
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
-              style={{
-                left: `${20 + (i * 10)}%`,
-                top: `${30 + (i * 8)}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.6, 0.2],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.2
-              }}
-            />
-          ))}
-        </motion.div>
+            {/* Floating particles for depth - desktop only */}
+            <motion.div 
+              className="fixed inset-0 z-0 pointer-events-none will-change-transform"
+              style={{ y: contentY }}
+            >
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-blue-400/15 rounded-full"
+                  style={{
+                    left: `${20 + (i * 12)}%`,
+                    top: `${30 + (i * 10)}%`,
+                  }}
+                  animate={{
+                    y: [0, -15, 0],
+                    opacity: [0.15, 0.4, 0.15],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 4 + i * 0.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3
+                  }}
+                />
+              ))}
+            </motion.div>
+          </>
+        ) : (
+          /* Simple mobile background */
+          <div className="fixed inset-0 z-0 pointer-events-none">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-200/6 to-purple-200/6 rounded-full blur-lg opacity-50" />
+            <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-indigo-200/6 to-cyan-200/6 rounded-full blur-lg opacity-50" />
+          </div>
+        )}
 
         {/* Header */}
         <Header />

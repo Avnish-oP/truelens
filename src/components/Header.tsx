@@ -7,13 +7,32 @@ import { Eye, Menu, X } from "lucide-react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle scroll effect with throttling for better performance
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -24,28 +43,32 @@ const Header = () => {
   ];
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: isMobile ? 20 : 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: isMobile ? 0.05 : 0.1
       }
     }
   };
 
   return (
     <motion.header 
-      initial={{ opacity: 0, y: -100 }}
+      initial={{ opacity: 0, y: isMobile ? -50 : -100 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 px-4 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: isMobile ? 0.4 : 0.6 }}
+      className={`fixed top-0 px-4 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-blue-500/10 border-b border-blue-200/30' 
-          : 'bg-transparent backdrop-blur-sm'
+          ? isMobile 
+            ? 'bg-white/95 shadow-lg border-b border-blue-200/30'
+            : 'bg-white/95 backdrop-blur-xl shadow-lg shadow-blue-500/10 border-b border-blue-200/30'
+          : isMobile 
+            ? 'bg-transparent' 
+            : 'bg-transparent backdrop-blur-sm'
       }`}
     >
       <motion.div
