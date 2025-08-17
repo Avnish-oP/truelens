@@ -31,6 +31,25 @@ export default function Home() {
   // Scroll-based opacity for sections
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.3]);
   const sectionScale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  // main content vertical parallax transform (avoid calling hooks in JSX)
+  const mainY = useTransform(scrollY, [0, 1000], [0, -20]);
+
+  // Navigation sections and precomputed motion heights
+  const navSections = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'products', label: 'Products' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  // Precompute MotionValues for the vertical fill of each nav indicator.
+  // Call hooks explicitly and in a stable order to satisfy rules-of-hooks.
+  const sectionHeight0 = useTransform(scrollYProgress, [0 * 0.33, (0 + 1) * 0.33], ["0%", "100%"]);
+  const sectionHeight1 = useTransform(scrollYProgress, [1 * 0.33, (1 + 1) * 0.33], ["0%", "100%"]);
+  const sectionHeight2 = useTransform(scrollYProgress, [2 * 0.33, (2 + 1) * 0.33], ["0%", "100%"]);
+  const sectionHeight3 = useTransform(scrollYProgress, [3 * 0.33, (3 + 1) * 0.33], ["0%", "100%"]);
+
+  const sectionHeights = [sectionHeight0, sectionHeight1, sectionHeight2, sectionHeight3];
 
   useEffect(() => {
     // Enhanced smooth scrolling behavior
@@ -97,12 +116,7 @@ export default function Home() {
         animate={{ opacity: showBackToTop ? 1 : 0, x: showBackToTop ? 0 : 50 }}
         transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        {[
-          { id: 'home', label: 'Home' },
-          { id: 'about', label: 'About' },
-          { id: 'products', label: 'Products' },
-          { id: 'contact', label: 'Contact' }
-        ].map((section, index) => (
+  {navSections.map((section, index) => (
           <motion.div
             key={section.id}
             className="group relative w-2 h-8 rounded-full bg-slate-300/20 overflow-hidden backdrop-blur-sm cursor-pointer border border-slate-400/10"
@@ -122,11 +136,7 @@ export default function Home() {
             <motion.div
               className="w-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
               style={{
-                height: useTransform(
-                  scrollYProgress,
-                  [index * 0.33, (index + 1) * 0.33],
-                  ["0%", "100%"]
-                )
+                height: sectionHeights[index]
               }}
             />
             
@@ -234,7 +244,7 @@ export default function Home() {
         {/* Apple-inspired continuous sections flow */}
         <motion.div 
           className="relative z-10"
-          style={{ y: useTransform(scrollY, [0, 1000], [0, -20]) }}
+          style={{ y: mainY }}
         >
           {/* Hero Section - Enhanced with scroll triggers */}
           <motion.section
