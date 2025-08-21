@@ -1,8 +1,17 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Eye, Palette, Shield, Layers, Sparkles, Heart, LucideEye, EyeClosed, ScanEye } from "lucide-react";
+import { 
+  Eye, 
+  Calendar, 
+  Palette, 
+  Focus, 
+  Layers, 
+  Droplets, 
+  ScanEye
+} from "lucide-react";
+import Image from "next/image";
 
 const ProductsSection = () => {
   const [ref, inView] = useInView({
@@ -15,7 +24,7 @@ const ProductsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
         delayChildren: 0.2
       }
     }
@@ -24,52 +33,16 @@ const ProductsSection = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
-      y: 80,
-      scale: 0.9,
-      rotateX: -15
+      y: 60,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
-  };
-
-  // Enhanced scroll trigger variants
-  const staggerContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const productCardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 100, 
-      scale: 0.8,
-      rotateY: -10
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotateY: 0,
-      transition: {
-        duration: 0.9,
-        ease: "easeOut" as const,
-        type: "spring",
-        stiffness: 100,
-        damping: 15
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94] as any
       }
     }
   };
@@ -79,79 +52,112 @@ const ProductsSection = () => {
       title: "Daily Soft Lenses",
       description: "Ultra-comfortable daily disposables with advanced moisture technology for all-day clarity and freshness.",
       icon: Eye,
-      gradient: "from-blue-500 to-cyan-400",
-      bgGradient: "from-blue-50 to-cyan-50",
-      accent: "bg-blue-500"
+      color: "blue",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 50%)"
     },
     {
       title: "Bi-Weekly/Monthly Lenses",
       description: "Comfortable and convenient lenses designed for extended wear, providing clear vision and hydration.",
       icon: ScanEye,
-      gradient: "from-rose-500 to-red-400",
-      bgGradient: "from-rose-50 to-red-50",
-      accent: "bg-rose-500"
+      color: "emerald",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.15) 0%, transparent 50%)"
     },
     {
       title: "Colored Contact Lenses",
       description: "Transform your look with our premium colored lenses featuring natural patterns and vibrant hues.",
       icon: Palette,
-      gradient: "from-purple-500 to-pink-400",
-      bgGradient: "from-purple-50 to-pink-50",
-      accent: "bg-purple-500"
+      color: "purple",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)"
     },
     {
       title: "Toric for Astigmatism",
       description: "Precision-engineered lenses with advanced stabilization technology for crisp, stable vision.",
-      icon: Shield,
-      gradient: "from-emerald-500 to-teal-400",
-      bgGradient: "from-emerald-50 to-teal-50",
-      accent: "bg-emerald-500"
+      icon: Focus,
+      color: "orange",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 50%)"
     },
     {
       title: "Multifocal Lenses",
       description: "Seamless near and far vision correction with progressive technology for presbyopia management.",
       icon: Layers,
-      gradient: "from-orange-500 to-amber-400",
-      bgGradient: "from-orange-50 to-amber-50",
-      accent: "bg-orange-500"
+      color: "rose",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(244, 63, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(225, 29, 72, 0.15) 0%, transparent 50%)"
     },
     {
-      title: "Solutions",
-      description: "Custom-designed lenses for unique eye conditions including keratoconus and irregular corneas.",
-      icon: Sparkles,
-      gradient: "from-indigo-500 to-blue-400",
-      bgGradient: "from-indigo-50 to-blue-50",
-      accent: "bg-indigo-500"
+      title: "Care Solutions",
+      description: "Premium lens care solutions and accessories for optimal hygiene and lens longevity.",
+      icon: Droplets,
+      color: "cyan",
+      bgImage: "radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(8, 145, 178, 0.15) 0%, transparent 50%)"
     },
-    
   ];
 
+  const getColorClasses = (color: string) => {
+    const colors = {
+      blue: {
+        icon: "text-blue-600",
+        iconBg: "bg-blue-100",
+        border: "border-blue-200/50",
+        hover: "group-hover:border-blue-300/70"
+      },
+      emerald: {
+        icon: "text-emerald-600",
+        iconBg: "bg-emerald-100",
+        border: "border-emerald-200/50",
+        hover: "group-hover:border-emerald-300/70"
+      },
+      purple: {
+        icon: "text-purple-600",
+        iconBg: "bg-purple-100",
+        border: "border-purple-200/50",
+        hover: "group-hover:border-purple-300/70"
+      },
+      orange: {
+        icon: "text-orange-600",
+        iconBg: "bg-orange-100",
+        border: "border-orange-200/50",
+        hover: "group-hover:border-orange-300/70"
+      },
+      rose: {
+        icon: "text-rose-600",
+        iconBg: "bg-rose-100",
+        border: "border-rose-200/50",
+        hover: "group-hover:border-rose-300/70"
+      },
+      cyan: {
+        icon: "text-cyan-600",
+        iconBg: "bg-cyan-100",
+        border: "border-cyan-200/50",
+        hover: "group-hover:border-cyan-300/70"
+      }
+    };
+    return colors[color as keyof typeof colors];
+  };
+
   return (
-    <section id="products" className="relative px-4 py-24 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/60" ref={ref}>
-      {/* Minimal background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section id="products" className="relative py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/50 overflow-hidden" ref={ref}>
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0">
         <motion.div
-          className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-200/5 to-purple-200/5 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-400/5 to-purple-400/5 rounded-full blur-3xl"
           animate={{
-            x: [0, 20, 0],
-            y: [0, -10, 0],
-            scale: [1, 1.03, 1]
+            x: [0, 30, 0],
+            y: [0, -20, 0],
           }}
           transition={{
-            duration: 14,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-r from-indigo-200/5 to-cyan-200/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-cyan-400/5 to-indigo-400/5 rounded-full blur-3xl"
           animate={{
-            x: [0, -15, 0],
-            y: [0, 15, 0],
-            scale: [1, 0.97, 1]
+            x: [0, -20, 0],
+            y: [0, 25, 0],
           }}
           transition={{
-            duration: 16,
+            duration: 25,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -159,111 +165,109 @@ const ProductsSection = () => {
       </div>
 
       <div className="container-custom relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-blue-700 font-medium mb-6">
-            <Eye className="w-4 h-4" />
-            Our Premium Collection
-          </div> */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-full text-blue-700 font-medium mb-8"
+          >
+            <Eye className="w-5 h-5" />
+            Premium Contact Lens Collection
+          </motion.div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6">
             Our Products
           </h2>
           
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Discover our comprehensive range of premium contact lenses <Eye className="inline-block w-5 h-5 text-blue-900" />
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover our comprehensive range of premium contact lenses designed for comfort, clarity, and style
           </p>
         </motion.div>
 
+        {/* Products Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 xl:grid-cols-3 gap-8"
         >
           {products.map((product, index) => {
             const IconComponent = product.icon;
+            const colorClasses = getColorClasses(product.color);
+            
             return (
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="group relative"
+                className="group cursor-pointer"
                 whileHover={{ 
-                  y: -12,
-                  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <div className={`relative h-full p-8 bg-gradient-to-br ${product.bgGradient} backdrop-blur-sm rounded-3xl border border-white/40 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
-                  {/* Animated background effect */}
+                <div 
+                  className={`relative h-full p-8 bg-white/80 backdrop-blur-sm rounded-3xl border-2 ${colorClasses.border} ${colorClasses.hover} shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden`}
+                  style={{
+                    backgroundImage: product.bgImage,
+                  }}
+                >
+                  {/* Subtle shine effect on hover */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100"
-                    initial={false}
-                    animate={{ x: [-100, 300] }}
-                    transition={{ 
-                      duration: 1.5, 
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      repeatDelay: 3
-                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full"
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                   />
                   
-                  {/* Floating orb */}
+                  {/* Icon */}
                   <motion.div
-                    className={`absolute top-6 right-6 w-16 h-16 bg-gradient-to-r ${product.gradient} rounded-full opacity-10 group-hover:opacity-20`}
-                    animate={{ 
-                      rotate: 360,
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                      scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                  />
-                  
-                  {/* Icon container */}
-                  <motion.div
-                    className={`relative w-16 h-16 mb-6 rounded-2xl bg-gradient-to-r ${product.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl`}
+                    className={`w-16 h-16 ${colorClasses.iconBg} rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-shadow duration-300`}
                     whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -5, 5, 0],
-                      transition: { duration: 0.4 }
+                      scale: 1.05,
+                      rotate: [0, -2, 2, 0]
                     }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <IconComponent className="w-8 h-8 text-white" />
-                    
-                    {/* Icon glow effect */}
-                    <motion.div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${product.gradient} opacity-0 group-hover:opacity-30 blur-md`}
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
+                    {product.icon===Focus ? <Image alt="" width={32} height={32} src={"/toric.svg"} className={`w-12 h-18 ${colorClasses.icon}`} /> : product.icon===Layers ? <Image alt="" width={32} height={32} src={"/mf.svg"} className={`w-12 h-18 ${colorClasses.icon}`} /> : <IconComponent className={`w-8 h-8 ${colorClasses.icon}`} />}
                   </motion.div>
 
                   {/* Content */}
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-slate-800 transition-colors">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors duration-300">
                       {product.title}
                     </h3>
-                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors">
+                    <p className="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 transition-colors duration-300">
                       {product.description}
                     </p>
+                    
+                    {/* Learn More Link */}
+                    <motion.div
+                      className={`inline-flex items-center gap-2 font-semibold ${colorClasses.icon} opacity-70 group-hover:opacity-100 transition-opacity duration-300`}
+                      whileHover={{ x: 4 }}
+                    >
+                      Learn More
+                      <motion.svg 
+                        className="w-4 h-4" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                        whileHover={{ x: 2 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </motion.svg>
+                    </motion.div>
                   </div>
 
                   {/* Bottom accent line */}
                   <motion.div
-                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${product.gradient} origin-left`}
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className={`absolute bottom-0 left-0 right-0 h-1 ${colorClasses.iconBg} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out`}
                   />
-                  
-                  {/* Decorative corner dots */}
-                  <div className="absolute top-4 left-4 w-2 h-2 bg-gradient-to-r from-white/40 to-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-4 right-4 w-2 h-2 bg-gradient-to-r from-white/40 to-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.div>
             );

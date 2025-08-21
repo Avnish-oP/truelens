@@ -36,8 +36,31 @@ const Hero = () => {
     <motion.section 
       ref={ref}
       style={{ y: ySlow, opacity }}
-      className={`relative z-10 min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50/90 via-blue-50/50 to-indigo-50/70 ${isMobile ? '' : 'will-change-transform'}`}
+      className={`relative z-10 min-h-screen flex items-center justify-center overflow-hidden ${isMobile ? '' : 'will-change-transform'}`}
     >
+      {/* Background Image Layer */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        style={{ y: ySlow, scale }}
+      >
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700"
+          style={{
+            backgroundImage: "url('/sample.jpg')",
+            transform: isMobile ? 'scale(1.05)' : 'scale(1)'
+          }}
+        />
+        
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-slate-50/55 to-blue-50/50" />
+        
+        {/* Additional overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/40" />
+        
+        {/* Subtle vignette effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/10 via-transparent to-slate-900/10" />
+      </motion.div>
       {/* Optimized background elements for mobile */}
       {!isMobile && (
         <motion.div 
@@ -131,7 +154,7 @@ const Hero = () => {
 
       {/* Main Content with optimized mobile performance */}
       <motion.div 
-        className={`relative top-2 z-10 container-custom text-center px-4 sm:px-6 lg:px-8`}
+        className={`relative top-2 z-20 container-custom text-center px-4 sm:px-6 lg:px-8`}
         style={{ opacity, y: isMobile ? undefined : ySlow }}
       >
         <motion.div
