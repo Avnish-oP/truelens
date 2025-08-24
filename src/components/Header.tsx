@@ -165,25 +165,13 @@ const Header = () => {
             >
               <motion.h1 
                 className="text-xl font-bold font-poppins bg-gradient-to-r from-slate-800 via-blue-700 to-purple-700 bg-clip-text text-transparent"
-                whileHover={{ scale: 1.05 }}
                 animate={{
-                  opacity: [1, 0.7, 1],
+                  opacity: [1, 1],
                 }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+                
               >
                 <motion.span
-                  whileHover={{
-                    opacity: [1, 0.3, 1, 0.3, 1],
-                    transition: {
-                      duration: 1.2,
-                      repeat: 2,
-                      ease: "easeInOut"
-                    }
-                  }}
+
                 >
                   Truelens
                 </motion.span>
@@ -193,14 +181,6 @@ const Header = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                whileHover={{
-                  opacity: [1, 0.4, 1, 0.4, 1],
-                  transition: {
-                    duration: 1.2,
-                    repeat: 2,
-                    ease: "easeInOut"
-                  }
-                }}
               >
                 INTERNATIONAL
               </motion.p>

@@ -59,7 +59,7 @@ const Footer = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 py-20">
+      <div className="container-custom relative z-10 py-20 px-4 sm:px-2">
         <motion.div
           variants={containerVariants}
           initial="hidden"

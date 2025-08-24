@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Eye, Star, Shield, Globe, Award, ArrowRight, Phone,Clock, PhoneCall } from "lucide-react";
+import { Eye, Shield, Globe, Award, ArrowRight, Clock, PhoneCall, } from "lucide-react";
+import Link from "next/link";
 import { Span } from "next/dist/trace";
 import { useRef, useState, useEffect } from "react";
 
@@ -367,7 +368,7 @@ const Hero = () => {
               
               <span className="relative flex items-center justify-center space-x-3">
                 <Eye className="w-6 h-6" />
-                <span>Explore Products</span>
+                <Link href="#products">Explore Products</Link>
                 <motion.div
                   className="flex items-center"
                   animate={!isMobile ? { x: [0, 4, 0] } : {}}

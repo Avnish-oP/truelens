@@ -10,6 +10,7 @@ import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import SectionTransition from '@/components/SectionTransition';
+import VideoSection from '@/components/VideoSection';
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -328,6 +329,16 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             />
           </SectionTransition>
+
+          {/* Video Section - Advertisement/Experience */}
+          <SectionTransition id="video" delay={0.1} className="relative -mt-16">
+            <VideoSection 
+              title="We Are Truelens International"
+              videoSrc="/about.mp4"
+              posterImage="/sample.jpg"
+            />
+          </SectionTransition>
+
 
           {/* Contact Section - Advanced scroll triggers */}
           <SectionTransition id="contact" delay={0.1} className="relative -mt-16">
