@@ -2,7 +2,18 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Users, Trophy, Clock, Award, Eye, Shield, Globe, Sparkles, Truck, Phone } from "lucide-react";
+import {
+  Users,
+  Trophy,
+  Clock,
+  Award,
+  Eye,
+  Shield,
+  Globe,
+  Sparkles,
+  Truck,
+  Phone,
+} from "lucide-react";
 
 const AboutSection = () => {
   const [ref, inView] = useInView({
@@ -16,9 +27,9 @@ const AboutSection = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -29,9 +40,9 @@ const AboutSection = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   const cardVariants = {
@@ -42,50 +53,54 @@ const AboutSection = () => {
       rotateY: 0,
       transition: {
         duration: 0.9,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   // Scroll trigger variants
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 80 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   const slideInLeftVariants = {
     hidden: { opacity: 0, x: -80 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   const slideInRightVariants = {
     hidden: { opacity: 0, x: 80 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   return (
-    <section id="about" className="relative px-4 py-24 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/60" ref={ref}>
+    <section
+      id="about"
+      className="relative px-4 py-24 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/60"
+      ref={ref}
+    >
       {/* Minimal background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -93,12 +108,12 @@ const AboutSection = () => {
           animate={{
             x: [0, 25, 0],
             y: [0, -15, 0],
-            scale: [1, 1.05, 1]
+            scale: [1, 1.05, 1],
           }}
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -106,12 +121,12 @@ const AboutSection = () => {
           animate={{
             x: [0, -20, 0],
             y: [0, 25, 0],
-            scale: [1, 0.95, 1]
+            scale: [1, 0.95, 1],
           }}
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </div>
@@ -156,14 +171,14 @@ const AboutSection = () => {
             variants={slideInLeftVariants}
             className="space-y-8"
           >
-            <motion.div 
+            <motion.div
               initial="hidden"
-              whileInView="visible" 
+              whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               variants={fadeInUpVariants}
               className="space-y-6"
             >
-              <motion.h3 
+              <motion.h3
                 className="text-5xl font-bold text-slate-900"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -172,30 +187,39 @@ const AboutSection = () => {
               >
                 About Us
               </motion.h3>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-slate-600 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                We are a trusted global B2B exporter of branded contact lenses, headquartered in Gurugram, Haryana(India). Our range includes spherical, multifocal, coloured, and toric lenses including lens solutions. Committed to customer orientation, timely delivery, and best market practices, we ensure quality products and seamless service to meet the evolving needs of our valued partners worldwide.
+                We are a trusted global B2B exporter of branded contact lenses,
+                headquartered in Gurugram, Haryana(India) and Registered office
+                in Sheung wan(Hongkong). Our range includes spherical,
+                multifocal, coloured, and toric lenses including lens solutions.
+                Committed to customer orientation, timely delivery, and best
+                market practices, we ensure quality products and seamless
+                service to meet the evolving needs of our valued partners
+                worldwide.
               </motion.p>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-slate-600 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                As a leading exporter, we supply branded contact lenses worldwide, ensuring genuine products, reliable delivery, and tailored solutions to meet diverse client needs.
+                As a leading exporter, we supply branded contact lenses
+                worldwide, ensuring genuine products, reliable delivery, and
+                tailored solutions to meet diverse client needs.
               </motion.p>
             </motion.div>
           </motion.div>
-            
-            {/* <motion.div
+
+          {/* <motion.div
               variants={containerVariants}
               className="grid grid-cols-2 gap-6"
             >
@@ -224,10 +248,9 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </motion.div> */}
-         
 
           {/* Right side - Feature cards with scroll triggers */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -236,57 +259,60 @@ const AboutSection = () => {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                { 
-                  icon: Shield, 
-                  title: "FDA Approved", 
-                  description: "FDA-approved lenses with rigorous quality control and safety standards.",
+                {
+                  icon: Shield,
+                  title: "FDA Approved",
+                  description:
+                    "FDA-approved lenses with rigorous quality control and safety standards.",
                   gradient: "from-blue-500/10 to-cyan-500/10",
                   iconColor: "from-blue-500 to-cyan-500",
-                  delay: 0.1
+                  delay: 0.1,
                 },
-                { 
-                  icon: Globe, 
-                  title: "Global Reach", 
-                  description: "Serving customers in 20+ countries with fast, secure worldwide delivery.",
+                {
+                  icon: Globe,
+                  title: "Global Reach",
+                  description:
+                    "Serving customers in 20+ countries with fast, secure worldwide delivery.",
                   gradient: "from-indigo-500/10 to-purple-500/10",
                   iconColor: "from-indigo-500 to-purple-500",
-                  delay: 0.2
+                  delay: 0.2,
                 },
-                { 
-                  icon: Truck, 
-                  title: "Seamless Delivery", 
-                  description: "Reliable logistics network ensuring timely and Hassle-free delivery of products.",
+                {
+                  icon: Truck,
+                  title: "Seamless Delivery",
+                  description:
+                    "Reliable logistics network ensuring timely and Hassle-free delivery of products.",
                   gradient: "from-purple-500/10 to-pink-500/10",
                   iconColor: "from-purple-500 to-pink-500",
-                  delay: 0.3
+                  delay: 0.3,
                 },
-                { 
-                  icon: Phone, 
-                  title: "Customer Support", 
+                {
+                  icon: Phone,
+                  title: "Customer Support",
                   description: "24/7 customer support for all your inquiries.",
                   gradient: "from-cyan-500/10 to-teal-500/10",
                   iconColor: "from-cyan-500 to-teal-500",
-                  delay: 0.4
-                }
+                  delay: 0.4,
+                },
               ].map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    y: 0, 
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
                     scale: 1,
                     transition: {
                       duration: 0.6,
                       delay: feature.delay,
-                      ease: "easeOut"
-                    }
+                      ease: "easeOut",
+                    },
                   }}
                   viewport={{ once: true, amount: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
                     y: -8,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.3 },
                   }}
                   className={`relative p-6 bg-gradient-to-br ${feature.gradient} backdrop-blur-sm rounded-3xl border border-white/30 shadow-lg hover:shadow-2xl transition-all duration-500 group overflow-hidden`}
                 >
@@ -297,39 +323,39 @@ const AboutSection = () => {
                     animate={{ x: [-100, 100] }}
                     transition={{ duration: 1.5, ease: "easeInOut" }}
                   />
-                  
-                  <motion.div 
+
+                  <motion.div
                     className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${feature.iconColor} flex items-center justify-center mb-4`}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                       rotate: 5,
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2 },
                     }}
                   >
                     <feature.icon className="w-6 h-6 text-white" />
                   </motion.div>
-                  
+
                   <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-slate-800 transition-colors">
                     {feature.title}
                   </h3>
-                  
+
                   <p className="text-slate-600 group-hover:text-slate-700 transition-colors leading-relaxed">
                     {feature.description}
                   </p>
-                  
+
                   {/* Decorative corner element */}
-                  <motion.div 
+                  <motion.div
                     className="absolute top-3 right-3 w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100"
                     initial={{ scale: 0 }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1,
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2 },
                     }}
                   />
                 </motion.div>
               ))}
             </div>
-            
+
             {/* Floating Elements with scroll triggers */}
             <motion.div
               className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-xl"
@@ -337,21 +363,21 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}
-              animate={{ 
+              animate={{
                 rotate: 360,
-                scale: [1, 1.2, 1]
+                scale: [1, 1.2, 1],
               }}
             />
-            
+
             <motion.div
               className="absolute -bottom-8 -left-8 w-20 h-20 bg-gradient-to-br from-indigo-200/30 to-cyan-200/30 rounded-full blur-xl"
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.7 }}
-              animate={{ 
+              animate={{
                 rotate: -360,
-                scale: [1, 0.8, 1]
+                scale: [1, 0.8, 1],
               }}
             />
           </motion.div>

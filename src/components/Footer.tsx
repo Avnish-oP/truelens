@@ -1,7 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Eye, Heart, Shield, Clock } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Eye,
+  Heart,
+  Shield,
+  Clock,
+} from "lucide-react";
 
 const Footer = () => {
   const containerVariants = {
@@ -10,9 +22,9 @@ const Footer = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -22,9 +34,9 @@ const Footer = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const
-      }
-    }
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
   };
 
   return (
@@ -36,12 +48,12 @@ const Footer = () => {
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.2, 1],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -49,12 +61,12 @@ const Footer = () => {
           animate={{
             x: [0, -80, 0],
             y: [0, 60, 0],
-            scale: [1, 0.8, 1]
+            scale: [1, 0.8, 1],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </div>
@@ -72,10 +84,10 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-8">
               <motion.div
                 className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   rotate: [0, -5, 5, 0],
-                  transition: { duration: 0.4 }
+                  transition: { duration: 0.4 },
                 }}
               >
                 <Eye className="w-6 h-6 text-white" />
@@ -84,16 +96,30 @@ const Footer = () => {
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
                   Truelens International
                 </h3>
-                <p className="text-slate-300 text-sm">Unveil your true vision</p>
+                <p className="text-slate-300 text-sm">
+                  Unveil your true vision
+                </p>
               </div>
             </div>
 
             {/* Trust Indicators */}
             <div className="grid grid-cols-1 gap-4 mb-8">
               {[
-                { icon: Shield, text: "FDA Approved", color: "from-emerald-500 to-emerald-600" },
-                { icon: Heart, text: "Satisfied Customers", color: "from-rose-500 to-rose-600" },
-                { icon: Clock, text: "24/7 Support", color: "from-blue-500 to-blue-600" }
+                {
+                  icon: Shield,
+                  text: "FDA Approved",
+                  color: "from-emerald-500 to-emerald-600",
+                },
+                {
+                  icon: Heart,
+                  text: "Satisfied Customers",
+                  color: "from-rose-500 to-rose-600",
+                },
+                {
+                  icon: Clock,
+                  text: "24/7 Support",
+                  color: "from-blue-500 to-blue-600",
+                },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -101,28 +127,35 @@ const Footer = () => {
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className={`w-6 h-6 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center`}>
+                  <div
+                    className={`w-6 h-6 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center`}
+                  >
                     <item.icon className="w-3 h-3 text-white" />
                   </div>
                   <span className="text-slate-300">{item.text}</span>
                 </motion.div>
               ))}
             </div>
-            
+
             {/* Social Media */}
             <div className="flex space-x-3">
               {[
-                { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:bg-blue-700" }
+                {
+                  icon: Linkedin,
+                  href: "#",
+                  label: "LinkedIn",
+                  color: "hover:bg-blue-700",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
                   aria-label={social.label}
                   className={`w-11 h-11 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center ${social.color} transition-all duration-300 group`}
-                  whileHover={{ 
-                    scale: 1.1, 
+                  whileHover={{
+                    scale: 1.1,
                     y: -3,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -165,20 +198,26 @@ const Footer = () => {
                   icon: Mail,
                   label: "Email",
                   value: "orders@truelensinternational.com",
-                  color: "from-blue-500 to-blue-600"
+                  color: "from-blue-500 to-blue-600",
                 },
                 {
                   icon: Phone,
                   label: "Phone",
                   value: "+91-9660966825",
-                  color: "from-emerald-500 to-emerald-600"
+                  color: "from-emerald-500 to-emerald-600",
                 },
                 {
                   icon: MapPin,
                   label: "Location",
                   value: "Gurugram, Haryana, India",
-                  color: "from-purple-500 to-purple-600"
-                }
+                  color: "from-purple-500 to-purple-600",
+                },
+                {
+                  icon: MapPin,
+                  label: "Location",
+                  value: "Sheung wan, Hong Kong",
+                  color: "from-purple-500 to-purple-600",
+                },
               ].map((contact, index) => (
                 <motion.div
                   key={index}
@@ -187,11 +226,15 @@ const Footer = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="flex items-start space-x-3">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${contact.color} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200`}>
+                    <div
+                      className={`w-10 h-10 rounded-xl bg-gradient-to-r ${contact.color} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200`}
+                    >
                       <contact.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-slate-400 text-sm mb-1">{contact.label}</p>
+                      <p className="text-slate-400 text-sm mb-1">
+                        {contact.label}
+                      </p>
                       <p className="text-slate-200 group-hover:text-white transition-colors whitespace-pre-line">
                         {contact.value}
                       </p>
@@ -220,13 +263,13 @@ const Footer = () => {
                 Designed with care for your vision needs.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center space-x-6 text-sm">
               {[
                 { name: "Terms of Service", href: "#terms" },
                 { name: "Privacy Policy", href: "#privacy" },
                 { name: "Cookie Policy", href: "#cookies" },
-                { name: "Accessibility", href: "#accessibility" }
+                { name: "Accessibility", href: "#accessibility" },
               ].map((link, index) => (
                 <motion.a
                   key={index}
